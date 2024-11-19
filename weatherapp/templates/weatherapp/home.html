@@ -1,0 +1,137 @@
+<!--
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اطلاعات آب و هوا</title>
+</head>
+<body>
+    <h1>اطلاعات آب و هوای شهر</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">دریافت اطلاعات</button>
+    </form>
+
+    {% if weather_data %}
+        <h2>وضعیت آب و هوای {{ city }}</h2>
+        <p>دما: {{ weather_data.main.temp }}°C</p>
+        <p>وضعیت: {{ weather_data.weather.0.description }}</p>
+        <p>رطوبت: {{ weather_data.main.humidity }}%</p>
+        <p>سرعت باد: {{ weather_data.wind.speed }} متر بر ثانیه</p>
+    {% elif weather_data is not none %}
+        <p>شهر پیدا نشد.</p>
+    {% endif %}
+</body>
+</html>
+-->
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پیش‌بینی وضعیت آب و هوا</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+        }
+
+        /* Weather Container */
+        .weather-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        /* Weather Card */
+        .weather-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            padding: 20px;
+            margin: 0 15px;
+            text-align: center;
+        }
+
+        /* Temperature */
+        .weather-card .temperature {
+            font-size: 40px;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        /* Weather Icon */
+        .weather-card .icon {
+            font-size: 60px;
+            margin: 20px 0;
+        }
+
+        /* Weather Info */
+        .weather-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        پیش‌بینی وضعیت آب و هوا
+    </header>
+
+    <div class="weather-container">
+        <div class="weather-card">
+            <div class="icon">
+                <!-- استفاده از یک آیکون برای وضعیت هوا (مثل آفتابی) -->
+                ☀️
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">دریافت اطلاعات</button>
+            </form>
+            <div class="temperature">
+                {{ weather_data.main.temp }}°C
+            </div>
+            <div class="weather-info">
+                <div>وضعیت هوا: {{ weather_data.weather.0.description }}</div>
+                <div>رطوبت هوا :{{ weather_data.main.humidity }}</div>
+                <div>سرعت باد kmh:{{ weather_data.wind.speed }}</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        تمامی حقوق محفوظ است.
+    </footer>
+</body>
+</html>
