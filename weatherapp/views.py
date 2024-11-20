@@ -7,10 +7,10 @@ API_KEY = '73eeb5bb57df43861abc7c225d459b93'
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
 
-def get_weather_data(city):
-     url = f"{BASE_URL}?q={city}&appid={API_KEY}&units=metric&lang=fa"
-     response = requests.get(url)
-     return response.json()
+# def get_weather_data(city):
+#      url = f"{BASE_URL}?q={city}&appid={API_KEY}&units=metric&lang=fa"
+#      response = requests.get(url)
+#      return response.json()
 
 
 def home(request):
